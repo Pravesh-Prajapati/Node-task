@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            /* text-align: center ; */
+        }
+
+        form {
+            background-color: rgb(213, 213, 213);
+            width: 600px;
+            margin: 0 auto;
+            padding: 30px 50px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        * {
+            margin: 0px;
+            font-family: sans-serif;
+        }
+
+        .heading {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .tasks {
+            display: flex;
+            gap: 20px;
+        }
+
+        .task-input {
+            padding: 10px 5px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .btn {
+            padding: 6px 20px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: rgb(60, 60, 218);
+            color: white;
+        }
+
+        .container {
+            /* background-color: rgb(236, 243, 195); */
+            width: 700px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .task-data:nth-child(even) {
+            background-color: rgb(230, 230, 230);
+            padding: 10px 50px;
+        }
+
+        .task-data:nth-child(odd) {
+            background-color: white;
+            padding: 10px 50px;
+        }
+
+        .task-data:last-child {
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .task-data:first-child {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .task-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background-color: red;
+            text-decoration: none;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .complete-btn {
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            /* color: white; */
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
+        .incomplete-btn {
+            background-color: rgb(238, 79, 79);
+            color: white;
+            text-decoration: none;
+            /* color: white; */
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
+        .done-btn {
+            /* background-color: rgb(32, 255, 61); */
+            color: black;
+            text-decoration: none;
+            /* color: white; */
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .left-data {
+            display: flex;
+            align-items: center;
+        }
+
+        .left-data h6 {
+            font-size: 16px;
+            margin-right: 10px;
+            background-color: rgb(89, 89, 244);
+            padding: 10px 15px;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .left-data h3 {
+            font-weight: 600;
+            font-size: 20px;
+
+        }
+
+        .all-task {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .completed-task {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+        <div>
+            <form action="/addtask" method="post">
+                <h1 class="heading">Enter Task</h1>
+                <div class="tasks">
+                    <div style="width: 65%;">
+                        <input type="text" name="task" class="task-input" name="" name="" id="">
+                    </div>
+                    <div style="width: 30%;">
+                        <input type="submit" class="btn" name="" id="" value="ADD">
+                    </div>
+                </div>
+            </form>
+        </div>
+    <!-- ========================================================alltask -->
+
+    <div class="container">
+        <h1 class="completed-task">ALL TASK</h1>
+        <div>
+            <% alltask.map((val,id)=>{ %>
+                <div class="task-data">
+                    <div class="task-detail">
+                        <div class="left-data">
+                            <h6>
+                                <%=id+1%>
+                            </h6>
+                            <h3>
+                                <%= val.task %>
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="/delete/<%=id%>" class="delete-btn">delete</a>
+                            <!-- <button>Update</button> -->
+                            <a href="/complete/<%=id%>" class="complete-btn">Mark as complete</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+    <!-- =========================================================completed task -->
+    <div class="container">
+        <h1 class="completed-task">COMPLETED TASK</h1>
+        <div>
+            <% completedtask.map((val,id)=>{ %>
+                <div class="task-data">
+                    <div class="task-detail">
+                        <div class="left-data">
+                            <h6>
+                                <%=id+1%>
+                            </h6>
+                            <h3>
+                                <%= val.task %>
+                            </h3>
+                        </div>
+                        <div>
+                            ✅
+                            <a href="/incomplete/<%=id%>" class="incomplete-btn">Mark as Incomplete</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>
