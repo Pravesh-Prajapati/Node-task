@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="w-full bg-blue-600 text-white py-4 shadow-md">
+    <h1 class="text-2xl text-center font-bold">Book Store</h1>
+  </header>
+
+  <!-- Form Section -->
+  <main class="py-10 w-full max-w-4xl mx-auto">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Add a New Book</h2>
+      <form id="book-form" class="space-y-2" method="post" action="/books/addBook">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Book Name -->
+          <div>
+            <label for="book-name" class="block text-gray-700 font-semibold">Book Name</label>
+            <input type="text" id="book-name" name="bookName" placeholder="Enter book name"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Title -->
+          <div>
+            <label for="book-title" class="block text-gray-700 font-semibold">Book Title</label>
+            <input type="text" id="book-title" name="bookTitle" placeholder="Enter book title"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Author Name -->
+          <div>
+            <label for="author-name" class="block text-gray-700 font-semibold">Author Name</label>
+            <input type="text" id="author-name" name="authorName" placeholder="Enter author name"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <!-- publish date -->
+          <div>
+            <label for="publish-date" class="block text-gray-700 font-semibold">publish date</label>
+            <input type="date" id="publishDate" name="publishDate" placeholder="Enter publish date"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Price -->
+          <div>
+            <label for="book-price" class="block text-gray-700 font-semibold">Price (in INR)</label>
+            <input type="number" id="book-price" name="bookPrice" placeholder="Enter price"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <!-- Book Pages -->
+          <div>
+            <label for="book-page" class="block text-gray-700 font-semibold">Page</label>
+            <input type="number" id="book-pages" name="bookPages" placeholder="Enter pages"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Image -->
+          <div>
+            <label for="book-image" class="block text-gray-700 font-semibold">Book Image URL</label>
+            <input type="url" id="book-image" name="bookImage" placeholder="Enter image URL"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <!-- add Button -->
+        <button type="submit"
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+          Add Book
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===========books -->
+  <div style="max-width: 1300px; margin: 0 auto;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% getBooks.map((book)=>{ %>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="bg-gray-400 ">
+            <img src="<%= book.bookImage %>" alt="Book Cover" class="w-full min-h-[350px] max-h-[350px] object-cover">
+          </div>
+          <div class="p-4">
+            <h2 class="text-lg font-bold text-gray-800">
+              <%= book.bookName %>
+            </h2>
+            <p class="text-md text-gray-500 mt-1">by <span class="font-semibold text-lg">
+                <%= book.authorName %>
+              </span></p>
+            <p class="text-md text-gray-500 mt-1">Title: <span class="font-bold text-lg">
+                <%= book.bookTitle %>
+              </span></p>
+            <p class="text-gray-700 text-md mt-3">Price: <span class="font-semibold text-lg">
+                <%= book.bookPrice %>
+              </span></p>
+            <p class=" text-md text-gray-500 mt-1">Published: <span class="font-medium text-lg">
+                <%= book.publishDate %>
+              </span></p>
+            <p class="text-md text-gray-500 mt-1">Pages: <span class="font-medium text-lg">
+                <%= book.bookPages %>
+              </span></p>
+            <div class="mt-4">
+              <a href="/books/deleteBook/<%= book.id %>"
+                class="bg-red-500 text-white py-2 px-6 rounded-md me-4 font-bold">Delete</a>
+              <a href="/books/editBook/<%= book.id %>"
+                class="bg-green-500 text-white py-2 px-8 rounded-md font-bold">Edit</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="w-full bg-blue-600 text-white py-4 shadow-md">
+    <h1 class="text-2xl text-center font-bold">Book Store</h1>
+  </header>
+
+  <!-- Form -->
+  <main class="py-10 w-full max-w-4xl mx-auto">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Edit Book Detail</h2>
+      <form id="book-form" class="space-y-2" method="post" action="/books/editBook/<%=singleBook.id %>">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Book Name -->
+          <div>
+            <label for="book-name" class="block text-gray-700 font-semibold">Book Name</label>
+            <input type="text"  value="<%= singleBook.bookName %>" name="bookName" placeholder="Enter book name"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Title -->
+          <div>
+            <label for="book-title" class="block text-gray-700 font-semibold">Book Title</label>
+            <input type="text"  value="<%= singleBook.bookTitle %>" name="bookTitle"  placeholder="Enter book title"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Author Name -->
+          <div>
+            <label for="author-name" class="block text-gray-700 font-semibold">Author Name</label>
+            <input type="text"  value="<%= singleBook.authorName %>" name="authorName" placeholder="Enter author name"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <!-- publish date -->
+          <div>
+            <label for="publish-date" class="block text-gray-700 font-semibold">publish date</label>
+            <input type="date"  value="<%= singleBook.publishDate %>" name="publishDate" placeholder="Enter publish date"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Price -->
+          <div>
+            <label for="book-price" class="block text-gray-700 font-semibold">Price (in INR)</label>
+            <input type="number"  value="<%= singleBook.bookPrice %>" name="bookPrice" placeholder="Enter price"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <!-- Book Pages -->
+          <div>
+            <label for="book-page" class="block text-gray-700 font-semibold">Page</label>
+            <input type="number"  value="<%= singleBook.bookPages %>" name="bookPages" placeholder="Enter pages"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Book Image -->
+          <div>
+            <label for="book-image" class="block text-gray-700 font-semibold">Book Image URL</label>
+            <input type="url"  value="<%= singleBook.bookImage %>" name="bookImage" placeholder="Enter image URL"
+              class="mt-1 w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+          Edit Book
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===========books -->
+</body>
+
+</html>
