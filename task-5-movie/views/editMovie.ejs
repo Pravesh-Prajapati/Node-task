@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex  justify-center mt-3">
+    <div>
+        <a href="/" class="btn-link bg-blue-600 text-white px-3 py-2 rounded-md ">Back</a>
+        <a href="/movie" class="btn-link bg-blue-600 text-white px-3 py-2 rounded-md">Movie List</a>
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Add Movie</h2>
+            <form action="/movie/updateMovie/<%= movie.id %>" method="post" class="space-y-4" enctype="multipart/form-data">
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Movie Title -->
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700">Movie Title</label>
+                        <input type="text" id="title" name="title" value="<%= movie.title %>"
+                            placeholder="Enter movie title"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                            required>
+                    </div>
+                    <!-- Director -->
+                    <div>
+                        <label for="director" class="block text-sm font-medium text-gray-700">Director</label>
+                        <input type="text" id="director" name="director" value="<%= movie.director %>"
+                            placeholder="Enter director's name"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                            required>
+                    </div>
+
+                    <!-- Release Year -->
+                    <div>
+                        <label for="releaseYear" class="block text-sm font-medium text-gray-700">Release Year</label>
+                        <input type="number" id="releaseYear" name="releaseYear" value="<%= movie.releaseYear %>"
+                            placeholder="Enter release year"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                            required>
+                    </div>
+
+
+                    <!-- Genre -->
+
+                    <div>
+                        <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
+                        <input type="radio" name="genre" value="Action" <% if(movie.genre=="Action") {%> checked
+                             <% } %>  /> Action
+                        <input type="radio" name="genre" value="Drama"  <% if(movie.genre=="Drama") {%> checked
+                            <% } %>  /> Drama
+                        <input type="radio" name="genre" value="Comedy" <% if(movie.genre=="Comedy") {%> checked
+                            <% } %>  /> Comedy
+                        <input type="radio" name="genre" value="Horror" <% if(movie.genre=="Horror") {%> checked
+                            <% } %>  />Horror
+                    </div>
+
+                    <!-- Image Upload -->
+                </div>
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Movie Image</label>
+                    <input type="file" id="image" name="movieImage"
+                        class="mt-1 block w-full px-4 py-2  border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700">
+                    <img src="<%= movie.movieImage %>" class="h-[400px]" height="100" />
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="releaseYear" class="block text-sm font-medium text-gray-700">Description</label>
+                    <input type="text" name="" id="" value="<%= movie.description %>"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700 h-[60px]">
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Edit Movie
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

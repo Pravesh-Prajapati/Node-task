@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-200">
+
+
+    <header class="bg-gray-900 text-white">
+        <div class="max-w-[1000px]    mx-auto flex items-center justify-between py-4 px-6">
+            <h1 class="text-2xl font-bold tracking-widest">
+                MovieFlix
+            </h1>
+            <div>
+                <a href="/" class="text-white bg-red-500 hover:bg-red-600 px-4 py-2 me-4 rounded-lg">Back</a>
+                <a href="/movie/form" class="text-white bg-blue-500 hover:bg-red-600 px-4 py-2 rounded-lg">Add Movie</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold text-center mb-10 text-gray-800">Movies List</h1>
+        <!-- Movie Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <% allMovie.forEach(movie=> { %>
+                <!-- Movie Card -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <!-- <a href="/movie/singleMovie/<%= movie.id %>"> -->
+                        <img src="<%= movie.movieImage %>" alt="<%= movie.title %>" class="w-full h-[400px] object-cover">
+                        <div class="p-4">
+                            <h2 class="text-lg font-bold text-gray-800">
+                                <%= movie.title %>
+                            </h2>
+                            <p class="text-lg text-gray-600">Director: <span class="font-medium">
+                                    <%= movie.director %>
+                                </span></p>
+                            <p class="text-lg text-gray-600">Release Year: <span class="font-medium  text-lg">
+                                    <%= movie.releaseYear %>
+                                </span></p>
+                            <p class=" text-lg font-bold text-gray-600">Genre: <span class="font-medium text-lg">
+                                    <%= movie.genre %>
+                                </span></p>
+
+                            <div class="flex gap-3 mt-4">
+                                <a href="/movie/edit/<%= movie.id %>"
+                                    class="text-sm text-white hover:text-blue-100 font-medium bg-blue-700 px-3 py-2 rounded-md">
+                                    Edit
+                                </a>
+                                <a href="/movie/delete/<%= movie.id %>"
+                                    class="text-sm text-white bg-red-700 px-3 py-2 rounded-md hover:text-red-200 font-medium">
+                                    Delete
+                                </a>
+                                <a href="/movie/singleMovie/<%= movie.id %>"
+                                    class="text-sm text-white bg-blue-700 px-3 py-2 rounded-md hover:text-red-200 font-medium">
+                                    View
+                                </a>
+                            </div>
+                        </div>
+                    </a>    
+                    </div>
+                <% }) %>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
