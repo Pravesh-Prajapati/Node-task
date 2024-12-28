@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Header</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-900 text-white px-6 py-4">
+    <div class="container mx-auto flex justify-between items-center">
+
+      <!-- Logo/Title -->
+       <a href="/home">
+         <h1 class="text-2xl font-bold">BlogiFy</h1>
+       </a>
+
+      <!-- Add Blog Button -->
+      <a href="/admin/addBlogPage">
+        <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-medium">
+          Add Blog
+        </button>
+      </a>
+      <!-- Profile Icon with Dropdown -->
+      <div class="relative group">
+        <button class="flex items-center space-x-2 focus:outline-none">
+          <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white group-hover:text-gray-300 transition"
+            viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          class="absolute right-0 mt-2 w-48 bg-white text-gray-700 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition duration-200 ease-in-out z-10">
+          <a href="/admin/profilePage" class="block px-4 py-2 hover:bg-gray-100">Go to Profile</a>
+          <a href="/admin/changePasswordPage" class="block px-4 py-2 hover:bg-gray-100">Change Password</a>
+          <a href="/logout" class="block px-4 py-2 text-red-600 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Example Content -->
+  <main class="container mx-auto p-6">
+    <h2 class="text-xl font-bold">Welcome to the Blogify</h2>
+  </main>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Edit Blog</h2>
+    <form action="/admin/editBlog/<%= blog._id %>" method="POST" enctype="multipart/form-data">
+      <!-- Title -->
+      <div class="mb-4">
+        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+        <input type="text" id="title" name="title" value="<%= blog.title %>" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required><%= blog.description %></textarea>
+      </div>
+
+      <!-- Category -->
+      <div class="mb-4">
+        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+        <select id="category" name="category" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+          <option value="technology" <%= blog.category === 'technology' ? 'selected' : '' %>>Technology</option>
+          <option value="lifestyle" <%= blog.category === 'lifestyle' ? 'selected' : '' %>>Lifestyle</option>
+          <option value="education" <%= blog.category === 'education' ? 'selected' : '' %>>Education</option>
+          <option value="health" <%= blog.category === 'health' ? 'selected' : '' %>>Health</option>
+          <option value="environment" <%= blog.category === 'environment' ? 'selected' : '' %>>Environment</option>
+        </select>
+      </div>
+
+      <!-- Cover Image -->
+      <div class="mb-4">
+        <label for="coverImage" class="block text-sm font-medium text-gray-700">Cover Image</label>
+        <input type="file" id="coverImage" name="coverImage" accept="image/*" class="mt-1 block w-full text-gray-500">
+        <p class="text-sm text-gray-500 mt-2">Current Image: 
+            <img src="<%= blog.coverImage %>" alt="">
+      </div>
+
+      <!-- Content -->
+      <div class="mb-4">
+        <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+        <textarea id="content" name="content" rows="8" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required><%= blog.content %></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-6">
+        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-medium rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

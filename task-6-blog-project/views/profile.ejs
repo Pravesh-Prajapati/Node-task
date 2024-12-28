@@ -1,0 +1,101 @@
+<!-- views/profile.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  
+  <%- include('header.ejs') %>
+
+  <!-- Profile Section -->
+<div class="max-w-4xl mx-auto my-12 p-8 bg-gradient-to-br from-white via-gray-100 to-gray-200 shadow-lg rounded-lg">
+  <!-- Top Section -->
+  <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+      <!-- Profile Image -->
+      <div class="relative">
+          <img src="<%= user.profileImage %>" alt="Profile Image" 
+               class="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-md">
+          <div class="absolute bottom-0 right-0 bg-green-500 text-white text-sm px-3 py-1 rounded-full">
+              Active
+          </div>
+      </div>
+
+      <!-- User Info -->
+      <div class="flex-grow">
+          <h2 class="text-4xl font-extrabold text-gray-800 mb-2">
+              <%= user.firstName %> <%= user.lastName %>
+          </h2>
+          <p class="text-lg font-medium text-gray-500 mb-4 capitalize">
+              <%= user.gender %>
+          </p>
+          <div class="space-y-2 text-gray-700">
+              <p class="flex items-center"><span class="font-semibold">Email:</span> <%= user.email %></p>
+              <p class="flex items-center"><span class="font-semibold">Hobby:</span> <%= user.hobbies %></p>
+              <p class="flex items-center"><span class="font-semibold">Contact:</span> <%= user.contact %></p>
+          </div>
+      </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="my-6 border-t border-gray-300"></div>
+
+  <!-- Bottom Section -->
+  <div class="flex flex-wrap justify-center gap-4">
+      <!-- Edit Button -->
+      <a href="/admin/editProfilePage" 
+         class="px-6 py-3 bg-indigo-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition">
+          Edit Profile Picture
+      </a>
+      <!-- Logout Button -->
+      <a href="/logout" 
+         class="px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-red-600 transition">
+          Logout
+      </a>
+  </div>
+</div>
+
+
+
+  <!--  -->
+
+  <div class="max-w-4xl mx-auto my-8 p-6 bg-white shadow-md rounded-lg">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Your Posts</h3>
+    
+    <% if (loginAdminPost && loginAdminPost.length > 0) { %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <% loginAdminPost.forEach(post => { %>
+          <div class="bg-gray-100 p-4 shadow rounded-lg">
+            <img src="<%= post.coverImage %>" alt="Post Image" class="w-full h-40 object-cover rounded-lg">
+            <h4 class="mt-4 text-lg font-semibold text-gray-800"><%= post.title %></h4>
+            <p class="mt-2 text-gray-600 text-sm"><%= post.description %></p>
+            <!-- <p class="mt-2 text-gray-600 text-sm"><%= post.content %></p> -->
+            <a href="/admin/singleBlog/<%= post.id %>" class="mt-4 mb-3 inline-block text-blue-500 text-sm font-semibold">Read More</a>
+            <div class="flex space-x-4">
+              <!-- Delete Button -->
+               <a href="/admin/deleteBlog/<%= post.id %>">
+                 <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                   Delete
+                 </button>
+               </a>
+              <!-- Edit Button -->
+               <a href="/admin/editBlogPage/<%= post.id %>">
+                 <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                   Edit 
+                 </button>
+               </a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="text-gray-600">You have not created any posts yet.</p>
+    <% } %>
+  </div>
+
+</body>
+</html>

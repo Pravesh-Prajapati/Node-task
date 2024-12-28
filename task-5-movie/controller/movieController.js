@@ -3,7 +3,7 @@ const Movie = require('../model/movieModel');
 const path = require('path');
 const fs = require('fs');
 
-exports.moviePage= async (req, res) => {
+exports.moviePage = async (req, res) => {
     try {
         let allMovie = await Movie.find()
         // console.log(allMovie);
@@ -14,65 +14,84 @@ exports.moviePage= async (req, res) => {
     }
 }
 
-exports.form= async (req, res) => {
+exports.form = async (req, res) => {
     return res.render("form")
 }
 
-exports.addMovie= async (req, res) => {
+exports.addMovie = async (req, res) => {
     // async (req, res) => {
-        try {
-            let imagePath = "";
-            if (req.file) {
-                imagePath = `/uploads/movies/${req.file.filename}`
-            }
-            req.body.movieImage = imagePath;
-            let newMovie = await Movie.create(req.body);
-            if (newMovie) {
-                console.log('Movie Added');
-                return res.redirect('/movie');
-            } else {
-                console.log("Somthing Wrong");
-                return res.redirect("/");
-            }
-        } catch (error) {
-            console.log(error);
-            return res.redirect('/');
+    try {
+        let imagePath = "";
+        if (req.file) {
+            imagePath = `/uploads/movies/${req.file.filename}`
         }
+        req.body.movieImage = imagePath;
+        let newMovie = await Movie.create(req.body);
+        if (newMovie) {
+            console.log('Movie Added');
+            return res.redirect('/movie');
+        } else {
+            console.log("Somthing Wrong");
+            return res.redirect("/");
+        }
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/');
+    }
     // }
 }
 
-exports.deleteMovie= async (req, res) => {
+exports.deleteMovie = async (req, res) => {
     try {
         let rec = await Movie.findById(req.params.id);
         console.log(rec);
+        res.redirect('/movie');
         if (rec) {
-            let imagepath = path.join(__dirname, "..", rec.movieImage)
-            await fs.unlinkSync(imagepath);
-            await Movie.findByIdAndDelete(req.params.id);
-            console.log("Delete Success");
-            return res.redirect('/movie');
-        } else {
+            if (rec.movieImage) {
+                let imagepath = path.join(__dirname, "..", rec.movieImage)
+                await Movie.findByIdAndDelete(req.params.id);
+                await fs.unlinkSync(imagepath);
+                return res.redirect('/movie');
+            }
+            else {
+                await Movie.findByIdAndDelete(req.params.id);
+                console.log("Delete Success");
+                return res.redirect('/movie');
+            }
+        }
+        else {
             console.log('Somthing Wrong');
             return res.redirect('/movie');
         }
+
+        // if (rec) {
+        //     let imagepath = path.join(__dirname, "..", rec.movieImage)
+        //     await fs.unlinkSync(imagepath);
+        //     await Movie.findByIdAndDelete(req.params.id);
+        //     console.log("Delete Success");
+        //     return res.redirect('/movie');
+        // } else {
+        //     console.log('Somthing Wrong');
+        //     return res.redirect('/movie');
+        // }
     } catch (error) {
         console.log("something Went Wrong", error);
     }
 }
 
 
-exports.editMovie=  async (req, res) => {
+exports.editMovie = async (req, res) => {
     let movie = await Movie.findById(req.params.id);
     // console.log(movie);
     if (movie) {
-        return res.render('editMovie', { movie})
+        return res.render('editMovie', { movie })
     }
-    else{
+    else {
         return res.redirect("/");
     }
 }
 
-exports.updateMovie=  async (req, res) => {
+exports.updateMovie = async (req, res) => {
     let rec = await Movie.findById(req.params.id);
     if (rec) {
         if (req.file) {
@@ -87,7 +106,7 @@ exports.updateMovie=  async (req, res) => {
     }
 }
 
-exports.singleMovie= async (req, res) => {
+exports.singleMovie = async (req, res) => {
     try {
         let singleMovie = await Movie.findById(req.params.id)
         // console.log(singleMovie);
