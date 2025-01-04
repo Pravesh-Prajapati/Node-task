@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= blog.title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Include header -->
+    <%- include('header.ejs') %>
+
+        <main class="flex-grow max-w-4xl mx-auto p-6">
+            <!-- Blog Cover Image -->
+            <div class="mb-6">
+                <img src="<%= blog.coverImage %>" alt="<%= blog.title %>"
+                    class="w-full h-64 object-cover rounded-lg shadow-lg">
+            </div>
+            <!-- Blog Title -->
+            <h1 class="text-4xl font-bold mb-4">
+                <%= blog.title %>
+            </h1>
+            <!-- Blog Metadata -->
+            <div class="flex items-center justify-between text-sm text-gray-600 mb-6">
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded">
+                    <%= blog.category %>
+                </span>
+                <span>By <strong>
+                        <%= blog.author %>
+                    </strong></span>
+            </div>
+
+            <!-- Blog Content -->
+            <article class="prose max-w-none text-gray-800">
+                <p>
+                    <%= blog.content %>
+                </p>
+            </article>
+        </main>
+
+        <footer class="bg-gray-800 p-4 text-center text-white mt-6">
+            <p>&copy; 2024 Blog Website. All rights reserved.</p>
+        </footer>
+</body>
+
+</html>

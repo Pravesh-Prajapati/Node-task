@@ -52,6 +52,8 @@ exports.homePage = async (req, res) => {
             let allBlog;
             if (category && category !== 'All') {
                 allBlog = await Blog.find({ category });
+                // console.log(allBlog);
+                
             } else {
                 allBlog = await Blog.find();
             }
