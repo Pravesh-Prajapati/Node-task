@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Include Header -->
+    <%- include('../header') %>
+        <div class="flex">
+            <!-- Include Sidebar -->
+            <%- include('../sidebar') %>
+
+                <!-- Main Content -->
+                <div class="ml-64 flex-1 p-8">
+                    <!-- Form Container -->
+                    <div class="max-w-3xl w-full bg-white shadow-md rounded-lg p-8">
+                        <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">Admin Profile</h1>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Profile Image -->
+                            <div class="bg-blue-50 shadow-lg rounded-lg p-4 flex flex-col items-center">
+                                <img src="<%= loginUserprofile.profileImage %>" alt="Profile Image"
+                                    class="w-24 h-24 rounded-full object-cover mb-4">
+                                <h2 class="text-lg font-bold text-gray-800">Full Name</h2>
+                                <p class="text-gray-600">
+                                    <%= loginUserprofile.firstName %>
+                                        <%= loginUserprofile.lastName %>
+                                </p>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="bg-green-50 shadow-lg rounded-lg p-4 flex flex-col items-center">
+                                <h2 class="text-lg font-bold text-gray-800">Email</h2>
+                                <p class="text-gray-600">
+                                    <%= loginUserprofile.email %>
+                                </p>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="bg-yellow-50 shadow-lg rounded-lg p-4 flex flex-col items-center">
+                                <h2 class="text-lg font-bold text-gray-800">Gender</h2>
+                                <p class="text-gray-600 capitalize">
+                                    <%= loginUserprofile.gender %>
+                                </p>
+                            </div>
+
+                            <!-- Contact Number -->
+                            <div class="bg-purple-50 shadow-lg rounded-lg p-4 flex flex-col items-center">
+                                <h2 class="text-lg font-bold text-gray-800">Contact Number</h2>
+                                <p class="text-gray-600">
+                                    <%= loginUserprofile.contactno %>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Back Button -->
+                        <div class="text-center mt-8">
+                            <a href="/home"
+                                class="inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                                Back to Home
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+        </div>
+
+</body>
+
+</html>

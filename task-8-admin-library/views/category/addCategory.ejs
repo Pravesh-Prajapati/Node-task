@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Include Header -->
+    <%- include('../header') %>
+    <div class="flex">
+        <!-- Include Sidebar -->
+        <%- include('../sidebar') %>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex-1 p-8">
+            <!-- Form Container -->
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Category</h2>
+
+                <form action="/admin/addCategory" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <!-- Category Name -->
+                    <div>
+                        <label for="categoryName" class="block text-sm font-medium text-gray-700">Category Name</label>
+                        <input 
+                            type="text" 
+                            id="categoryName" 
+                            name="categoryName" 
+                            required 
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        >
+                    </div>
+
+                    <!-- Category Image -->
+                    <div>
+                        <label for="categoryImage" class="block text-sm font-medium text-gray-700">Category Image</label>
+                        <input 
+                            type="file" 
+                            id="categoryImage" 
+                            name="categoryImage" 
+                            accept="image/*" 
+                            required 
+                            class="mt-1 block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-md file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-indigo-50 file:text-indigo-700
+                                hover:file:bg-indigo-100"
+                        >
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button 
+                            type="submit" 
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Add Category
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Include Header -->
+    <%- include('../header') %>
+        <div class="flex">
+            <!-- Include Sidebar -->
+            <%- include('../sidebar') %>
+
+                <!-- Main Content -->
+                <div class="ml-64 flex-1 p-8">
+                    <!-- Form Container -->
+                    <div class="bg-white shadow-md rounded-lg p-6 max-w-[1000px] mx-auto">
+                        <form action="/admin/updateAdmin/<%= admin._id %>" method="POST" enctype="multipart/form-data"
+                            class="space-y-6">
+                            <!-- First Name -->
+                            <div>
+                                <label for="firstName" class="block text-gray-700 font-medium">First Name</label>
+                                <input type="text" id="firstName" name="firstName" value="<%= admin.firstName || '' %>"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md" required>
+                            </div>
+                            <!-- Last Name -->
+                            <div>
+                                <label for="lastName" class="block text-gray-700 font-medium">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" value="<%= admin.lastName || '' %>"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md" required>
+                            </div>
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium">Email</label>
+                                <input type="email" id="email" name="email" value="<%= admin.email || '' %>"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md" required>
+                            </div>
+                            <!-- Gender -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                <div class="flex space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="gender" value="male" <%=admin.gender==="male"
+                                            ? "checked" : "" %>
+                                        class="form-radio text-indigo-600"
+                                        required
+                                        >
+                                        <span class="ml-2">Male</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="gender" value="female" <%=admin.gender==="female"
+                                            ? "checked" : "" %>
+                                        class="form-radio text-indigo-600"
+                                        required
+                                        >
+                                        <span class="ml-2">Female</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Hobbies -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Hobbies</label>
+                                <div class="space-y-2">
+                                    <label class="inline-flex items-center mr-4">
+                                        <input type="checkbox" name="hobby" value="reading"
+                                            <%=admin.hobby.includes("reading") ? "checked" : "" %>
+                                        class="form-checkbox text-indigo-600"
+                                        >
+                                        <span class="ml-2">Reading</span>
+                                    </label>
+                                    <label class="inline-flex items-center mr-4">
+                                        <input type="checkbox" name="hobby" value="gaming"
+                                            <%=admin.hobby.includes("gaming") ? "checked" : "" %>
+                                        class="form-checkbox text-indigo-600"
+                                        >
+                                        <span class="ml-2">Gaming</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" name="hobby" value="traveling"
+                                            <%=admin.hobby.includes("traveling") ? "checked" : "" %>
+                                        class="form-checkbox text-indigo-600"
+                                        >
+                                        <span class="ml-2">Traveling</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Contact Number -->
+                            <div>
+                                <label for="contactno" class="block text-gray-700 font-medium">Contact Number</label>
+                                <input type="text" id="contactno" name="contactno" value="<%= admin.contactno || '' %>"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md">
+                            </div>
+                            <!-- Additional Info -->
+                            <div>
+                                <label for="info" class="block text-gray-700 font-medium">Additional Info</label>
+                                <textarea id="info" name="info"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                                    rows="4"><%= admin.info || '' %></textarea>
+                            </div>
+                            <!-- Profile Image -->
+                            <div>
+                                <label for="profileImage" class="block text-gray-700 font-medium">Profile Image</label>
+                                <% if (admin.profileImage) { %>
+                                    <img src="<%= admin.profileImage %>" alt="Profile Image"
+                                        class="w-20 h-20 rounded-full mb-3">
+                                    <% } %>
+                                        <input type="file" id="profileImage" name="profileImage"
+                                            class="w-full mt-1 p-2 border border-gray-300 rounded-md">
+                            </div>
+                            <!-- Submit Button -->
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                                    Update Admin
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+        </div>
+
+</body>
+
+</html>

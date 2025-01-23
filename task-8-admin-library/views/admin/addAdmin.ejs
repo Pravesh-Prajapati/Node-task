@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Include Header -->
+    <%- include('../header') %>
+    <div class="flex">
+        <!-- Include Sidebar -->
+        <%- include('../sidebar') %>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex-1 p-8">
+            <!-- Form Container -->
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Admin</h2>
+
+                <form action="/admin/addAdmin" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <!-- Name Fields -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstname" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input 
+                                type="text" 
+                                id="firstname" 
+                                name="firstName" 
+                                required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            >
+                        </div>
+                        <div>
+                            <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input 
+                                type="text" 
+                                id="lastname" 
+                                name="lastName" 
+                                required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Email & Password -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            >
+                        </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                        <div class="flex space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="gender" value="male" class="form-radio text-indigo-600" required>
+                                <span class="ml-2">Male</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="gender" value="female" class="form-radio text-indigo-600" required>
+                                <span class="ml-2">Female</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Hobbies -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Hobbies</label>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center mr-4">
+                                <input type="checkbox" name="hobby" value="reading" class="form-checkbox text-indigo-600">
+                                <span class="ml-2">Reading</span>
+                            </label>
+                            <label class="inline-flex items-center mr-4">
+                                <input type="checkbox" name="hobby" value="gaming" class="form-checkbox text-indigo-600">
+                                <span class="ml-2">Gaming</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="hobby" value="traveling" class="form-checkbox text-indigo-600">
+                                <span class="ml-2">Traveling</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <label for="contactno" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                        <input 
+                            type="tel" 
+                            id="contactno" 
+                            name="contactno" 
+                            required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        >
+                    </div>
+
+                    <!-- Info -->
+                    <div>
+                        <label for="info" class="block text-sm font-medium text-gray-700">Additional Information</label>
+                        <textarea 
+                            id="info" 
+                            name="info" 
+                            rows="3" 
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        ></textarea>
+                    </div>
+
+                    <!-- Profile Image -->
+                    <div>
+                        <label for="profileImage" class="block text-sm font-medium text-gray-700">Profile Image</label>
+                        <input 
+                            type="file" 
+                            id="profileImage" 
+                            name="profileImage" 
+                            accept="image/*"
+                            class="mt-1 block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-md file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-indigo-50 file:text-indigo-700
+                                hover:file:bg-indigo-100"
+                        >
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button 
+                            type="submit" 
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Add Admin
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

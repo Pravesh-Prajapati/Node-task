@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+  <%- include('header') %>
+    <div class="flex">
+      <%- include('sidebar') %>
+        <div class="ml-64 flex-1 p-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+              <h2 class="text-lg font-semibold mb-2">Total Books</h2>
+              <p class="text-3xl font-bold">
+                <%= allbooks.length %>
+              </p>
+            </div>
+          </div>
+
+          <h1 class="text-2xl font-bold text-gray-800 mb-6">All Books</h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <% allbooks.forEach(book=> { %>
+                  <div
+                    class="bg-white shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="<%= book.bookImage %>" alt="<%= book.bookTitle %>" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                      <h2 class="text-lg font-bold text-gray-800 truncate">
+                        <%= book.bookTitle %>
+                      </h2>
+                      <p class="text-md text-gray-600 mt-2">
+                        <%= book.bookDescription %>
+                      </p>
+                      <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm text-gray-600 bg-green-100 p-2 rounded-lg">Price: ₹<%=
+                            book.bookPrice.toFixed(2) %>
+                        </p>
+                        <p class="text-sm text-gray-600">Author: <%= book.bookAuthor %>
+                        </p>
+                      </div>
+                      <div class="flex justify-between items-center mt-1">
+                        <p class="text-sm text-gray-600">Publisher: <%= book.bookPublisher %>
+                        </p>
+                        <p class="text-sm text-gray-600">Published: <%= new
+                            Date(book.bookPublishedDate).toLocaleDateString('en-IN', { year: 'numeric' , month: 'long' ,
+                            day: 'numeric' }) %>
+                        </p>
+                      </div>
+                      <div class="flex justify-between items-center mt-1">
+                        <p class="text-sm text-gray-600">Pages: <%= book.bookPages %>
+                        </p>
+                        <p class="text-sm text-gray-600 bg-blue-100 p-2 rounded-lg">Languages: <%= book.bookLanguage %>
+                        </p>
+                      </div>
+
+                      <div class="flex justify-between items-center mt-1">
+                        <p class="text-sm text-gray-600 bg-gray-600 text-white px-3 py-2 rounded-lg mt-2">Category: <%=
+                            book.categoryId.categoryName %>
+                        </p>
+                        <p class="text-sm text-gray-600 bg-gray-600 text-white px-3 py-2 rounded-lg mt-2">Sub Category:
+                          <%= book.subCategoryId.subCategoryName %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %>
+
+
+
+
+          </div>
+        </div>
+    </div>
+</body>
+
+</html>
