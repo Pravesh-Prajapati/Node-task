@@ -102,7 +102,7 @@ exports.viewAllProduct=async (req,res) => {
     try {
         if (req.user.role=="Users") {
             let allProduct= await Product.find({})
-            res.status(400).json({ msg: "all Product",allProduct })
+            res.status(200).json({ msg: "all Product",allProduct })
         }
     } catch (error) {
         res.status(400).json({ msg: "something went wrong" })
@@ -112,7 +112,7 @@ exports.viewSingleProduct=async (req,res) => {
     try {
         if (req.user.role=="Users") {
             let singleProduct= await Product.findById(req.params.id)
-            res.status(400).json({ msg: "all Product",singleProduct })
+            res.status(200).json({ msg: "all Product",singleProduct })
         }
     } catch (error) {
         res.status(400).json({ msg: "something went wrong" })
